@@ -1,0 +1,139 @@
+<h3 [ngStyle] = "{'color': 'green'}">serviceOnAppLevel</h3>
+<p>studentdetails works!</p>
+<button (click) = 'serviceOnAppLevel()'>serviceOnAppLevel</button> <br>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Address</td>
+    </tr>
+    <tr *ngFor="let item of arrOfService">
+        <td>{{item.id }}</td>
+        <td>{{item.name | uppercase }}</td>
+        <td>{{item.address}}</td>
+    </tr>
+</table>
+
+{{arrOfService | json }}
+<hr>
+
+
+
+<h3 [ngStyle] = "{'color': 'green'}">template drive form</h3>
+<!-- in this ngForm will group the our form group if they have the ngModel properties and assign it to the refH variable -->
+    <form  #refH='ngForm' (ngSubmit)="subs1(refH)">
+       
+        <div class="form-group">
+          <label for="">Name</label>
+          <input type="text" name="name" id="" class="form-control" placeholder="Enter Name" >
+        </div>
+
+        <div class="form-group">
+            <label for="">last Name</label>
+            <input type="text" name="last_name" id="" class="form-control" placeholder="Enter Last Name" ngModel required>
+        </div>
+
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" name="email" id="" class="form-control" placeholder="Enter email" ngModel required email #localVariable = 'ngModel'>
+        </div>
+        <p *ngIf="!localVariable.valid">enter the email {{!localVariable.valid}}</p>
+
+        <button class="btn btn-primary" type= 'submit' [disabled] = '!refH.valid'>submit</button>
+    </form>
+    
+    {{refH.value| json }} <br>
+    {{refH.valid }}
+<hr>
+
+
+
+
+<h3 [ngStyle] = "{'color': 'green'}">Reactive Form (Model driven Form)</h3>
+<!-- in this ngForm will group the our form group if they have the ngModel properties and assign it to the refH variable -->
+    <form  [formGroup]='signUpForm' (ngSubmit)="subs2(signUpForm)">
+       
+        <div class="form-group">
+          <label for="">Name</label>
+          <input type="text" formControlName="fname" id="" class="form-control" placeholder="Enter Name" >
+        </div>
+
+        <div class="form-group">
+            <label for="">last Name</label>
+            <input type="text" formControlName="lname" id="" class="form-control" placeholder="Enter Last Name" >
+        </div>
+
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" formControlName="ename" id="" class="form-control" placeholder="Enter email" >
+        </div>
+        
+
+        <button class="btn btn-primary" type= 'submit' [disabled] = '!signUpForm.valid'>submit</button>
+    </form>
+    
+   {{signUpForm.valid}}
+<hr>
+
+
+
+
+
+<h3 [ngStyle] = "{'color': 'green'}">Reactive Form (Model driven Form with validation and more)</h3>
+<!-- in this ngForm will group the our form group if they have the ngModel properties and assign it to the refH variable -->
+    <form  [formGroup]='signUpForm3' (ngSubmit)="subs3(signUpForm3)">
+       
+        <div class="form-group">
+          <label for="">Name</label>
+          <input type="text" formControlName="fname" id="" class="form-control" placeholder="Enter Name" >
+        </div>
+
+        <div class="form-group">
+            <label for="">last Name</label>
+            <input type="text" formControlName="lname" id="" class="form-control" placeholder="Enter Last Name" >
+        </div>
+
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" formControlName="ename" id="" class="form-control" placeholder="Enter email" >
+        </div>
+        
+
+        <button class="btn btn-primary" type= 'submit' [disabled] = '!signUpForm3.valid'>submit</button>
+        <button class="btn btn-primary" type= 'button' (click) = 'resetFormGiveVal3()'>reset</button>
+        <button class="btn btn-primary" type= 'button' (click) = 'fillDataInForm3()'>fill data</button>
+        <button class="btn btn-primary" type= 'button' (click) = 'fillDataInFormPatch3()'>fill data with patch</button>
+        
+    </form>
+    
+    {{signUpForm3.valid}} <br>
+    {{ signUpForm3.value |json }}
+<hr>
+
+
+
+
+
+<h3 [ngStyle] = "{'color': 'green'}">form array, nested form array</h3>
+<!-- in this ngForm will group the our form group if they have the ngModel properties and assign it to the refH variable -->
+    <form  [formGroup]='signUpForm4' (ngSubmit)="subs4(signUpForm4)">
+       
+        <div formArrayName = 'contactNumber'>
+            <div *ngFor="let item of signUpForm4.controls.contactNumber.controls; index as i">
+
+                <input [formControlName] = 'i'  placeholder="contactNumber">
+
+            </div>
+        
+        </div>
+        
+        <button class="btn btn-primary" type= 'submit' >submit</button>
+        <button class="btn btn-primary" type= 'button' (click) = 'serPresetSetValue4()'>SetValue set Preset</button>
+        <button class="btn btn-primary" type= 'button' (click) = 'serPresetSetPatch4()'>patch set Preset</button>
+        <button class="btn btn-primary" type= 'button' (click) = 'addControls4()'>add Controls</button>
+        <!-- <button class="btn btn-primary" type= 'button' (click) = 'fillDataInFormPatch3()'>fill data with patch</button> -->
+        
+    </form>
+    
+   
+<hr>

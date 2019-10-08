@@ -1,0 +1,17 @@
+Directives
+    the Directives which change the behaviore and appearance of the dom elements
+
+there are 3 type of Directives 
+    1->component
+    2->stucture
+    3->Attribute
+
+
+    1->component Directives =this is famouse type of Directives with template, style and logic
+    2->stucture Directives
+        they add and remove the html element into the view
+        ex *ngIf , *ngFor, *ngSwitch
+    3->Attribute Directives = this is for modify the appearance of the dom elements
+        there are 2 type of the built in Attribute Directives
+        a)ngStyle
+        b)ngClass   
